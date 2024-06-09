@@ -70,10 +70,6 @@ Khabarews is a news application that fetches the latest articles from various ca
 
 - `Display.css`: The main stylesheet for the application.
 
-## License
-
-This project is licensed under the MIT License.
-
 ## Acknowledgements
 
 - [News API](https://newsapi.org/) for providing the news data.
