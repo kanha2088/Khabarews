@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Khabarews
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Khabarews is a news application that fetches the latest articles from various categories using the News API. Users can search for specific news, save articles, delete articles, and add comments to the articles.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Fetches news articles based on the query.
+- Allows users to search for news articles.
+- Displays articles in various categories.
+- Users can save, delete, and comment on articles.
+- Displays saved articles separately.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- News API
+- Toastify for notifications
+- CSS for styling
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. Clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    ```bash
+    git clone https://github.com/your-username/khabarews.git
+    cd khabarews
+    ```
 
-### `npm run build`
+2. Install dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```bash
+    npm install
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Create a `.env` file in the root of your project and add your News API key:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```env
+    REACT_APP_NEWS_API_KEY=your_api_key_here
+    ```
 
-### `npm run eject`
+4. Start the development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    ```bash
+    npm start
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Open the application in your browser:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ```
+    http://localhost:3000
+    ```
 
-## Learn More
+2. Use the search bar to search for specific news articles.
+3. Click on category buttons to filter articles by category.
+4. Save articles by clicking the "Save" button.
+5. View saved articles by clicking the "Saved" button in the header.
+6. Delete articles by clicking the "Delete" button.
+7. Add comments to articles by clicking the "Comments" button.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `Display.js`: The main component that handles fetching and displaying news articles.
+- `Spinner.js`: A component to show a loading spinner while fetching data.
+- `Card.js`: A component to display saved articles.
+- `CommentPopup.js`: A component to display and add comments to articles.
 
-### Code Splitting
+## CSS Files
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `Display.css`: The main stylesheet for the application.
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This project is licensed under the MIT License.
 
-### Making a Progressive Web App
+## Acknowledgements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [News API](https://newsapi.org/) for providing the news data.
+- [React Toastify](https://github.com/fkhadra/react-toastify) for notifications.
