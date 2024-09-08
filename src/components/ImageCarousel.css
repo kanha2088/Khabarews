@@ -1,0 +1,22 @@
+/* src/ImageCarousel.css */
+.carousel-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .carousel-images {
+    flex: 1;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .carousel-description {
+    flex: 1;
+    padding: 0 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
