@@ -9,7 +9,7 @@ import "./App.css"
 function App() {
 
   const apikey=process.env.REACT_APP_API_KEY;
-  console.log("key ",apikey)
+ 
   return (
     <div className="App">
         

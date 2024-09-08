@@ -12,7 +12,7 @@ const Display = ({apikey}) => {
   const [loading, setLoading] = useState(true);
   const [save, setsave] = useState([]);
   const [show, setshow] = useState(true);
-  const [currentComment, setCurrentComment] = useState(null);
+  const [currentarticleComment, setcurrentarticleComment] = useState(null);
   const [comments, setComments] = useState({});
 
 
@@ -33,18 +33,12 @@ const Display = ({apikey}) => {
     } 
   };
 
-  const handleDeleteArticle = (index) => {
-    const updatedArticles = [...newsdata]; // Create a copy of the array
-    updatedArticles.splice(index, 1); // Remove the article at the given index
-    setdata(updatedArticles); // Update the state with the new array
-    toast.success('Article deleted!');
-  };
 
   async function news() {
     setLoading(true);
     try {
       const res = await fetch(
-        `https://newsapi.org/v2/everything?q=${query}&from=2024-06-03&to=2024-06-03&sortBy=popularity&apiKey=${apikey}`
+        `https://newsapi.org/v2/everything?q=${query}&apiKey=${apikey}`
       );
       const data = await res.json();
       setdata(data.articles); 
@@ -56,7 +50,7 @@ const Display = ({apikey}) => {
     }
   }
 
-  const handleKeyDown = (event) => {
+  const handleKeyenter = (event) => {
     if (event.key === 'Enter') {
       handleInputChange(event);
     }
@@ -69,11 +63,11 @@ const Display = ({apikey}) => {
   const filteredArticles = newsdata.filter(article => article.urlToImage);
 
   const handleOpenComment = (article) => {
-    setCurrentComment(article);
+    setcurrentarticleComment(article);
   };
 
   const handleCloseComment = () => {
-    setCurrentComment(null);
+    setcurrentarticleComment(null);
   };
 
   const handleAddComment = (article, commentText) => {
@@ -92,11 +86,21 @@ const Display = ({apikey}) => {
   
     return sentence;
   };
+  const handleDeleteArticle = (title) => {
+    // Create a new array by filtering out the article with the specified title
+    const newArticles = newsdata.filter(article => article.title !== title);
   
+    // Update the state with the new array
+    setdata(newArticles);
+  
+    // Display a success message
+    toast.success('Article deleted!');
+  };
+
 
   return (
     <div>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={1000} />
       <div className="button-group">
         <h1>Khabarews</h1>
         <button onClick={() => setshow(true)}>Articles</button>
@@ -111,7 +115,7 @@ const Display = ({apikey}) => {
                   <input
                     type="text"
                     className="search-input"
-                    onKeyDown={handleKeyDown}
+                    onKeyDown={handleKeyenter}
                   />
                 </div>
                     <div className="category-buttons">
@@ -126,8 +130,7 @@ const Display = ({apikey}) => {
 'Lifestyle',
 'Education',
 'Environment',
-'Crime and Law',
-'Culture'].map(category => (
+].map(category => (
                         <button key={category} value={category} onClick={() => setQuery(category)}>{category}</button>
                       ))}
                     </div>
@@ -139,22 +142,22 @@ const Display = ({apikey}) => {
           ) : (
             <div className='displaycarditems'>
             
-              {filteredArticles.map((article, index) => (
-                <div key={index} className='displaycard'>
-                  {article.urlToImage && (
-                    <img className="displaycardimg" src={article.urlToImage} alt={article.title} />
-                  )}
-                  <h3>{trimSentence(article.title, 20)}</h3>
-                  <p>Description</p>
-                  <p>{trimSentence(article.description, 20)}</p>
-                  <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                  <div className='displaycardbtn'>
-                    <button onClick={() => handleSaveArticle(article)}>Save</button>
-                    <button onClick={() => handleDeleteArticle(index)}>Delete</button>
-                    <button onClick={() => handleOpenComment(article)}>Comments</button>
-                  </div>
-                </div>
-              ))}
+            {filteredArticles.map((article) => (
+  <div key={article.title} className='displaycard'>
+    {article.urlToImage && (
+      <img className="displaycardimg" src={article.urlToImage} alt={article.title} />
+    )}
+    <h3>{trimSentence(article.title, 20)}</h3>
+    <p>Description</p>
+    <p>{trimSentence(article.description, 20)}</p>
+    <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
+    <div className='displaycardbtn'>
+      <button onClick={() => handleSaveArticle(article)}>Save</button>
+      <button onClick={() => handleDeleteArticle(article.title)}>Delete</button>
+      <button onClick={() => handleOpenComment(article)}>Comments</button>
+    </div>
+  </div>
+))}
             </div>
           )}
         </div>
@@ -162,11 +165,11 @@ const Display = ({apikey}) => {
         <Card save={save} setsave={setsave} />
       )}
 
-      {currentComment && (
+      {currentarticleComment && (
         <CommentPopup
-          article={currentComment}
-          comments={comments[currentComment.title] || []}
-          onAddComment={(commentText) => handleAddComment(currentComment, commentText)}
+          article={currentarticleComment}
+          comments={comments[currentarticleComment.title] || []}
+          onAddComment={(commentText) => handleAddComment(currentarticleComment, commentText)}
           onClose={handleCloseComment}
         />
       )}

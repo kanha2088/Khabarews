@@ -69,7 +69,8 @@ body {
 .search-input {
   padding: 10px;
   font-size: 1.4em;
-  width: 300px;
+  width: 500px;
+  border-radius: 15px;
 }
 
 .category-buttons {

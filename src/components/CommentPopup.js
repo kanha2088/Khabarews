@@ -33,7 +33,7 @@ const CommentPopup = ({ article, comments, onAddComment, onClose }) => {
           {comments.map((comment, index) => (
             <div key={index} className="comment-item">
               {comment}
-              <button>Delete</button>
+              
             </div>
           ))}
         </div>
